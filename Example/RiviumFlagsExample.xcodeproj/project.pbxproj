@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		187332F989C8DD859490807E /* RiviumFlags in Frameworks */ = {isa = PBXBuildFile; productRef = FB7BF93DBF03321D51C3E142 /* RiviumFlags */; };
+		7BCFB01D2BEA484B54BE89C8 /* RiviumFlagsExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C0D1859B84D43C2074C24 /* RiviumFlagsExampleApp.swift */; };
+		DA897DDBE37FED21862E071F /* FlagTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30642A323C5DBF9DB3280C9 /* FlagTestView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		742D78920BE3F9B336965EF5 /* RiviumFlagsExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RiviumFlagsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB81BDA4CF8FFDB28535F77E /* rivium-flags-ios-sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "rivium-flags-ios-sdk"; path = ..; sourceTree = SOURCE_ROOT; };
+		AF8176F0ABAD09195564F61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BD3C0D1859B84D43C2074C24 /* RiviumFlagsExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiviumFlagsExampleApp.swift; sourceTree = "<group>"; };
+		F30642A323C5DBF9DB3280C9 /* FlagTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagTestView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09D7A2B9A3FA0A9DCCE7CE37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187332F989C8DD859490807E /* RiviumFlags in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29AD3C56BAA3485F674172B1 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				AB81BDA4CF8FFDB28535F77E /* rivium-flags-ios-sdk */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		3497F61E31EB6F7C447F7335 /* RiviumFlagsExample */ = {
+			isa = PBXGroup;
+			children = (
+				F30642A323C5DBF9DB3280C9 /* FlagTestView.swift */,
+				AF8176F0ABAD09195564F61A /* Info.plist */,
+				BD3C0D1859B84D43C2074C24 /* RiviumFlagsExampleApp.swift */,
+			);
+			path = RiviumFlagsExample;
+			sourceTree = "<group>";
+		};
+		9B9685BA257D2B7B398219BD = {
+			isa = PBXGroup;
+			children = (
+				29AD3C56BAA3485F674172B1 /* Packages */,
+				3497F61E31EB6F7C447F7335 /* RiviumFlagsExample */,
+				A94F73D9C94C5C520E391B8D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A94F73D9C94C5C520E391B8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				742D78920BE3F9B336965EF5 /* RiviumFlagsExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAF6940DA82CFC3F7B765DD3 /* RiviumFlagsExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A754B6B97550D166EEE32BF /* Build configuration list for PBXNativeTarget "RiviumFlagsExample" */;
+			buildPhases = (
+				F421075EBA8FEF399FC55AF0 /* Sources */,
+				09D7A2B9A3FA0A9DCCE7CE37 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RiviumFlagsExample;
+			packageProductDependencies = (
+				FB7BF93DBF03321D51C3E142 /* RiviumFlags */,
+			);
+			productName = RiviumFlagsExample;
+			productReference = 742D78920BE3F9B336965EF5 /* RiviumFlagsExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADCC9BE0723DE5E8BCCEB30B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					DAF6940DA82CFC3F7B765DD3 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 6F34E2A5974C1E731D6A935D /* Build configuration list for PBXProject "RiviumFlagsExample" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9B9685BA257D2B7B398219BD;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4DD7ADD8C3012815250EC890 /* XCLocalSwiftPackageReference "..//" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAF6940DA82CFC3F7B765DD3 /* RiviumFlagsExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F421075EBA8FEF399FC55AF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA897DDBE37FED21862E071F /* FlagTestView.swift in Sources */,
+				7BCFB01D2BEA484B54BE89C8 /* RiviumFlagsExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6A5546CD405F6504FC7F9DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = RiviumFlagsExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.rivium.flags.example;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		98DB8E77E3CBCBB808059204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C44FF4E4EE49CFBC3C5FA7F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = RiviumFlagsExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.rivium.flags.example;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDCF0E3E0C6F6E2E10FE508B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A754B6B97550D166EEE32BF /* Build configuration list for PBXNativeTarget "RiviumFlagsExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C44FF4E4EE49CFBC3C5FA7F3 /* Debug */,
+				6A5546CD405F6504FC7F9DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6F34E2A5974C1E731D6A935D /* Build configuration list for PBXProject "RiviumFlagsExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDCF0E3E0C6F6E2E10FE508B /* Debug */,
+				98DB8E77E3CBCBB808059204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4DD7ADD8C3012815250EC890 /* XCLocalSwiftPackageReference "..//" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "..//";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB7BF93DBF03321D51C3E142 /* RiviumFlags */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RiviumFlags;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = ADCC9BE0723DE5E8BCCEB30B /* Project object */;
+}

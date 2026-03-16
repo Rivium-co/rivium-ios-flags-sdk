@@ -1,0 +1,28 @@
+name: RiviumFlagsExample
+options:
+  bundleIdPrefix: co.rivium.flags
+  deploymentTarget:
+    iOS: "16.0"
+packages:
+  RiviumFlags:
+    path: ../
+targets:
+  RiviumFlagsExample:
+    type: application
+    platform: iOS
+    sources:
+      - RiviumFlagsExample
+    info:
+      path: RiviumFlagsExample/Info.plist
+    dependencies:
+      - package: RiviumFlags
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: co.rivium.flags.example
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: "NO"
+        CODE_SIGNING_ALLOWED: "NO"
+        SUPPORTED_PLATFORMS: "iphonesimulator iphoneos"
+        SUPPORTS_MACCATALYST: "NO"
+        SDKROOT: iphoneos
