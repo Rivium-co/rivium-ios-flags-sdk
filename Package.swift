@@ -12,5 +12,11 @@ let package = Package(
     ],
     targets: [
         .target(name: "RiviumFlags", path: "Sources/RiviumFlags"),
+        .testTarget(
+            name: "RiviumFlagsTests",
+            dependencies: ["RiviumFlags"],
+            path: "Tests/RiviumFlagsTests",
+            resources: [.copy("Resources/sdk-test-vectors.json")]
+        ),
     ]
 )

@@ -7,7 +7,7 @@
 <h3 align="center">Rivium Flags iOS SDK</h3>
 
 <p align="center">
-  Feature flag management for iOS and macOS with offline caching, targeting rules, and rollout control.
+  Rivium Flags client for iOS and macOS: flags evaluated on the server for your user, cached on the device, typed getters with reasons.
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@ Add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Rivium-co/rivium-ios-flags-sdk.git", from: "0.1.0")
+    .package(url: "https://github.com/Rivium-co/rivium-ios-flags-sdk.git", from: "0.2.0")
 ]
 ```
 
@@ -41,59 +41,122 @@ https://github.com/Rivium-co/rivium-ios-flags-sdk.git
 
 ### CocoaPods
 
-Add to your `Podfile`:
-
 ```ruby
-pod 'RiviumFlags', '~> 0.1.0'
+pod 'RiviumFlags', '~> 0.2.0'
 ```
 
-Then run:
-
-```bash
-pod install
-```
-
-## Quick Start
+## Quick start
 
 ```swift
 import RiviumFlags
 
-// Initialize
 let flags = RiviumFlags(config: RiviumFlagsConfig(
-    apiKey: "YOUR_API_KEY",
-    environment: "production",
-    enableOfflineCache: true
+    apiKey: "rv_live_xxx",          // public project key — never a server secret
+    environment: "production"       // nil = the Default layer
 ))
+flags.start()                        // serves the device cache at once, then fetches
 
-try await flags.initialize { event, data in
-    print("[\(event)] \(data ?? [:])")
+if flags.isEnabled("new-checkout") {
+    // …
 }
-
-// Set user context
-flags.setUserId("user-123")
-flags.setUserAttributes(["plan": "pro", "country": "US"])
-
-// Check flags
-let darkMode = flags.isEnabled("dark_mode")
-let variant = flags.getValue("checkout_flow")
-
-// Full evaluation
-let result = flags.evaluate("checkout_flow")
-print("enabled: \(result.enabled), value: \(result.value), variant: \(result.variant)")
-
-// Refresh from server
-await flags.refresh()
+let theme = flags.getString("theme", default: "light")
 ```
 
-## Features
+`start()` returns immediately. Getters never block and never throw: before the first result they return your
+default (reason `NOT_READY`). To wait for the first result:
 
-- **Boolean & Multivariate Flags** — Simple on/off toggles or multi-variant flags with weighted distribution
-- **Targeting Rules** — Target users by attributes (equals, contains, regex, in, greater_than, and more)
-- **Rollout Percentages** — Gradual rollouts with deterministic MD5-based bucketing
-- **Offline Caching** — Flags cached in UserDefaults for offline access
-- **Environment Overrides** — Separate flag values per environment (development, staging, production)
-- **Singleton Access** — Use `RiviumFlags.shared` after initialization
-- **Async/Await** — Native Swift concurrency support
+```swift
+let ready = await flags.waitUntilReady(timeout: 3)
+```
+
+A server secret (`rv_srv_…`) passed as `apiKey` is refused: it is logged as an error and the client never sends a
+request.
+
+## Identify users
+
+```swift
+flags.identify("user-123", attributes: ["plan": "pro", "country": "AM", "beta": true, "age": 31])
+flags.setAttributes(["plan": "business"])   // replaces all attributes
+flags.setUserId(nil)                         // signed out, keeps attributes
+flags.reset()                                // sign-out: clears user, attributes and cached results
+```
+
+- Context changes refetch after 250 ms (debounced). A **different user id drops the cached results at once**, so one
+  user never sees another user's flags.
+- Attributes: string (≤ 1,024 chars), number, Bool, `nil`/`NSNull`, or arrays of those; ≤ 100 keys. Anything else
+  is dropped with a log warning. `userId` / `anonymousId` are not attributes.
+- Every install has an **anonymous id** (UUID v4, `UserDefaults` key `co.rivium.flags.anonymousId`). It is sent with
+  every request so rollouts work before sign-in, and it survives `reset()`. `flags.resetAnonymousId()` makes a new one.
+
+## Getters
+
+| Call | Returns |
+|---|---|
+| `isEnabled(_:default:)` | the flag's `enabled` (true only for `ON` / `VARIANT`) |
+| `getBoolean(_:default:)` / `getString` / `getNumber` / `getJson` | the served value, or your default |
+| `getJson(_:as:default:)` | a `json` flag decoded into any `Decodable` |
+| `booleanDetail` / `stringDetail` / `numberDetail` / `jsonDetail` | `FlagDetail { value, enabled, variant, reason, version }` |
+| `getDetail(_:default:)` | untyped detail (any value type) |
+| `getAll()` | every result held, `[String: FlagResult]` |
+
+Reasons: `ON`, `VARIANT`, `DISABLED`, `PREREQUISITE_FAILED`, `NOT_TARGETED`, `OUTSIDE_ROLLOUT`, `NO_BUCKETING_ID`,
+`ERROR` (from the server) and `FLAG_NOT_FOUND`, `NOT_READY`, `TYPE_MISMATCH` (from the SDK; your default is returned).
+A typed getter on a flag of another type (e.g. `getBoolean` on a `string` flag) returns your default with
+`TYPE_MISMATCH`.
+
+```swift
+let d = flags.stringDetail("theme", default: "light")
+print(d.value, d.variant ?? "-", d.reason)
+```
+
+## Events
+
+```swift
+let token = flags.addListener { event in      // always on the main thread
+    switch event {
+    case .ready: break                         // first results (cache or network)
+    case .updated(let changedKeys): print(changedKeys)
+    case .error(let error): print(error)       // RiviumFlagsError(kind:statusCode:code:message:)
+    }
+}
+token.cancel()
+```
+
+## Refresh, caching and errors
+
+- Fetches happen on `start()`, on context changes, when the app returns to the foreground and the results are older
+  than 15 minutes, and on `await flags.refresh()`.
+- Optional polling: `RiviumFlagsConfig(refreshIntervalSeconds: 300)` (off by default, minimum 60 s, foreground only).
+  **Every evaluate request is a billed usage event**, which is why polling is off by default.
+- Results are cached in `UserDefaults` (never the API key) and served offline; a failure never clears them.
+  `ETag` / `If-None-Match` avoid re-downloading unchanged results.
+- 401 / 403 / 404 stop automatic fetches until `refresh()` (bad key, refused, unknown environment). 429 waits
+  `Retry-After`, then backs off ×2 up to 5 minutes; network errors and 5xx back off the same way. 400 is not retried.
+- `flagKeys: ["a", "b"]` in the config limits evaluation to those flags.
+- `flags.close()` stops all network work.
+
+## Client SDK, not server SDK
+
+This is a **client** SDK: it uses the public key and asks the Rivium Flags server for results
+(`POST /public/v2/evaluate`). No targeting rules, segments or rollout salts reach the device. Backends that evaluate
+locally use the Node.js / Next.js server SDKs with a server secret — never put that secret in an app.
+
+## Migrating from 0.1.x
+
+0.2.0 is a new API: 0.1.x evaluated rules on the device and no longer receives them.
+
+| 0.1.x | 0.2.0 |
+|---|---|
+| `try await flags.initialize(callback:)` | `flags.start()` + `addListener` / `waitUntilReady()` |
+| `setUserId` + `setUserAttributes` (merge) | `identify(_:attributes:)`, `setUserId`, `setAttributes` (replace) |
+| `getValue(_:defaultValue:)` | `getBoolean` / `getString` / `getNumber` / `getJson` |
+| `evaluate(_:)` → `FlagEvalResult` | `getDetail(_:default:)` → `FlagDetail` (adds `reason`, `version`) |
+| `getAll()` → `[FeatureFlag]` (rules) | `getAll()` → `[String: FlagResult]` (results only) |
+| `RiviumFlags.shared` | keep your own instance |
+| `enableOfflineCache` | `cacheEnabled` |
+| `reset()` / `dispose()` | `reset()` (sign-out) / `close()` |
+
+Users are bucketed again once (new SHA-256 bucketing on the server).
 
 ## Documentation
 
